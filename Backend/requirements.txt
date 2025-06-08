@@ -4,3 +4,4 @@ celery
 redis 
 matplotlib 
 reportlab
+django-cors-headers

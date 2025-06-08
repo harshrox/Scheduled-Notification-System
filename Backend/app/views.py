@@ -8,7 +8,7 @@ from django.http import FileResponse, HttpResponse
 from .pdf_generator import generate_pdf_report
 from .html_generator import generate_html_report
 
-from notifications.tasks import send_daily_reports
+from app.tasks import send_daily_reports
 from django.http import JsonResponse
 
 # Post - Subscribe
