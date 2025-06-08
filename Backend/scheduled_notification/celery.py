@@ -2,7 +2,7 @@ import os
 from celery import Celery
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'scheduled_notification.settings')
-app = Celery('notification_project')
+app = Celery('scheduled_notification')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 

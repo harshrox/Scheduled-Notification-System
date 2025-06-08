@@ -15,8 +15,8 @@
   <div *ngIf="!isLoading && history.length > 0" class="history-list">
     <div *ngFor="let report of history" class="history-item">
       <div class="report-info">
-        <div class="date">{{ report.date | date:'mediumDate' }}</div>
-        <div class="format">Format: {{ report.format }}</div>
+        <div class="date">{{ report.sent_date | date:'mediumDate' }}</div>
+        <div class="format">Format: {{ report.format_sent }}</div>
       </div>
       <div class="status" [class]="report.status.toLowerCase()">
         {{ report.status }}

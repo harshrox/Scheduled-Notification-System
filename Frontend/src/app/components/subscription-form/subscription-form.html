@@ -1,6 +1,6 @@
 <div class="subscription-form">
   <h2>Daily Report Subscription</h2>
-  
+
   <form (ngSubmit)="onSubmit()" #subscriptionForm="ngForm">
     <div class="form-group">
       <label for="startDate">Start Date:</label>
@@ -9,7 +9,8 @@
         id="startDate"
         [(ngModel)]="subscription.start_date" 
         name="startDate"
-        required>
+        required
+      />
     </div>
 
     <div class="form-group">
@@ -19,7 +20,8 @@
         id="endDate"
         [(ngModel)]="subscription.end_date" 
         name="endDate"
-        required>
+        required
+      />
     </div>
 
     <div class="form-group">
@@ -27,9 +29,11 @@
       <select 
         id="format"
         [(ngModel)]="subscription.report_format" 
-        name="format">
+        name="format"
+      >
         <option value="PDF">PDF</option>
         <option value="HTML">HTML</option>
+        <option value="BOTH">BOTH</option>
       </select>
     </div>
 
@@ -37,21 +41,27 @@
       <button 
         type="submit" 
         [disabled]="isLoading || !subscriptionForm.form.valid"
-        class="btn btn-primary">
+        class="btn btn-primary"
+      >
         {{ isLoading ? 'Subscribing...' : 'Subscribe' }}
       </button>
-      
+
       <button 
         type="button" 
         (click)="onUnsubscribe()"
         [disabled]="isLoading"
-        class="btn btn-secondary">
+        class="btn btn-secondary"
+      >
         {{ isLoading ? 'Processing...' : 'Unsubscribe All' }}
       </button>
     </div>
   </form>
 
-  <div *ngIf="message" class="message" [class.error]="message.includes('Error')">
+  <div 
+    *ngIf="message" 
+    class="message" 
+    [class.error]="message.includes('Error')"
+  >
     {{ message }}
   </div>
 </div>

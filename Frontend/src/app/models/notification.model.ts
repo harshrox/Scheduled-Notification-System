@@ -9,8 +9,8 @@ export interface Subscription {
 
 export interface ReportHistory {
   id: number;
-  date: string;
-  format: string;
+  sent_date: string;
+  format_sent: string;
   status: string;
 }
 

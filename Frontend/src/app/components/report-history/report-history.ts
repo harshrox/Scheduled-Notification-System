@@ -24,6 +24,7 @@ export class ReportHistoryComponent implements OnInit {
     this.isLoading = true;
     this.notificationService.getReportHistory().subscribe({
       next: (history) => {
+        console.log('Fetched history:', history);
         this.history = history;
         this.isLoading = false;
       },
@@ -32,6 +33,8 @@ export class ReportHistoryComponent implements OnInit {
         this.isLoading = false;
       }
     });
+
+    
   }
 
   refresh() {
