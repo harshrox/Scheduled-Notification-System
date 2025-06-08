@@ -11,6 +11,7 @@ from .html_generator import generate_html_report
 from notifications.tasks import send_daily_reports
 from django.http import JsonResponse
 
+# Post - Subscribe
 class SubscribeView(generics.CreateAPIView):
     serializer_class = SubscriptionSerializer
     def post(self, request):
@@ -20,29 +21,35 @@ class SubscribeView(generics.CreateAPIView):
             return Response({"message": "Subscribed!"}, status=200)
         return Response(serializer.errors, status=400)
 
+# Post - Unsubscribe
 class UnsubscribeView(generics.GenericAPIView):
     def post(self, request):
         Subscription.objects.filter(is_active=True).update(is_active=False)
         return Response({"message": "Unsubscribed."})
 
+# Get - List Subscriptions
 class ListSubscriptionsView(generics.ListAPIView):
     serializer_class = SubscriptionSerializer
     queryset = Subscription.objects.filter(is_active=True)
 
+# Get - List History
 class HistoryView(generics.ListAPIView):
     serializer_class = ReportHistorySerializer
     queryset = ReportHistory.objects.all()
 
+# Get - PDF
 class PreviewPDFView(APIView):
     def get(self, request):
         pdf = generate_pdf_report()
         return FileResponse(pdf, as_attachment=True, filename="daily_report.pdf")
 
+# Get - HTML
 class PreviewHTMLView(APIView):
     def get(self, request):
         html_content = generate_html_report()
         return HttpResponse(html_content)
 
+# Post - Trigger Mail
 def trigger_task(request):
     send_daily_reports.delay()
     return JsonResponse({"message": "Task triggered"})
