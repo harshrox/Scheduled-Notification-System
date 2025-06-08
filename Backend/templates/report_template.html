@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: blue;
+    }
+    .summary {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Daily Report</h1>
+  <div class="summary">
+    <p>This is a mock HTML report for the user.</p>
+    <ul>
+      {% for value in values %}
+      <li>Data point: {{ value }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
