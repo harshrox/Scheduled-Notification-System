@@ -4,6 +4,12 @@ A simple full-stack application built using Django (Backend) and Angular (Fronte
 
 ---
 
+## Demo
+
+[Watch the video](https://www.youtube.com/watch?v=nezOwgWVxgY)
+
+---
+
 ## Features
 
 * Subscribe to daily reports within a selected date range
