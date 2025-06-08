@@ -1,0 +1,57 @@
+<div class="subscription-form">
+  <h2>Daily Report Subscription</h2>
+  
+  <form (ngSubmit)="onSubmit()" #subscriptionForm="ngForm">
+    <div class="form-group">
+      <label for="startDate">Start Date:</label>
+      <input 
+        type="date" 
+        id="startDate"
+        [(ngModel)]="subscription.start_date" 
+        name="startDate"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="endDate">End Date:</label>
+      <input 
+        type="date" 
+        id="endDate"
+        [(ngModel)]="subscription.end_date" 
+        name="endDate"
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="format">Report Format:</label>
+      <select 
+        id="format"
+        [(ngModel)]="subscription.report_format" 
+        name="format">
+        <option value="PDF">PDF</option>
+        <option value="HTML">HTML</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        [disabled]="isLoading || !subscriptionForm.form.valid"
+        class="btn btn-primary">
+        {{ isLoading ? 'Subscribing...' : 'Subscribe' }}
+      </button>
+      
+      <button 
+        type="button" 
+        (click)="onUnsubscribe()"
+        [disabled]="isLoading"
+        class="btn btn-secondary">
+        {{ isLoading ? 'Processing...' : 'Unsubscribe All' }}
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="message" class="message" [class.error]="message.includes('Error')">
+    {{ message }}
+  </div>
+</div>

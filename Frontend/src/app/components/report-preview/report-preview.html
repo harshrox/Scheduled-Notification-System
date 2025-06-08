@@ -1,0 +1,42 @@
+<div class="report-preview">
+  <h3>Report Preview</h3>
+  
+  <div class="preview-actions">
+    <button 
+      (click)="previewPdf()" 
+      [disabled]="isLoading"
+      class="btn btn-primary">
+      {{ isLoading ? 'Loading...' : 'Preview PDF' }}
+    </button>
+    
+    <button 
+      (click)="previewHtml()" 
+      [disabled]="isLoading"
+      class="btn btn-primary">
+      {{ isLoading ? 'Loading...' : 'Preview HTML' }}
+    </button>
+    
+    <button 
+      (click)="triggerTestEmail()" 
+      [disabled]="isLoading"
+      class="btn btn-secondary">
+      {{ isLoading ? 'Sending...' : 'Send Test Email' }}
+    </button>
+    
+    <button 
+      *ngIf="htmlContent" 
+      (click)="clearPreview()"
+      class="btn btn-clear">
+      Clear Preview
+    </button>
+  </div>
+
+  <div *ngIf="message" class="message" [class.error]="message.includes('Error')">
+    {{ message }}
+  </div>
+
+  <div *ngIf="htmlContent" class="html-preview">
+    <h4>HTML Report Preview:</h4>
+    <div class="preview-content" [innerHTML]="htmlContent"></div>
+  </div>
+</div>

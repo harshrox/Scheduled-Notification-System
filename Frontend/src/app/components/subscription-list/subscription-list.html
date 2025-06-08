@@ -1,0 +1,31 @@
+<div class="subscription-list">
+  <div class="header">
+    <h3>Active Subscriptions</h3>
+    <button (click)="refresh()" class="btn btn-refresh" [disabled]="isLoading">
+      {{ isLoading ? 'Loading...' : 'Refresh' }}
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading subscriptions...</div>
+
+  <div *ngIf="!isLoading && subscriptions.length === 0" class="no-data">
+    No active subscriptions found.
+  </div>
+
+  <div *ngIf="!isLoading && subscriptions.length > 0" class="subscriptions">
+    <div *ngFor="let subscription of subscriptions" class="subscription-card">
+      <div class="subscription-info">
+        <div class="date-range">
+          <strong>{{ subscription.start_date }} to {{ subscription.end_date }}</strong>
+        </div>
+        <div class="format">Format: {{ subscription.report_format }}</div>
+        <div *ngIf="subscription.created_at" class="created">
+          Created: {{ subscription.created_at | date:'short' }}
+        </div>
+      </div>
+      <div class="status" [class.active]="subscription.is_active">
+        {{ subscription.is_active ? 'Active' : 'Inactive' }}
+      </div>
+    </div>
+  </div>
+</div>

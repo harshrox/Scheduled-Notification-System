@@ -1,0 +1,26 @@
+<div class="report-history">
+  <div class="header">
+    <h3>Report History</h3>
+    <button (click)="refresh()" class="btn btn-refresh" [disabled]="isLoading">
+      {{ isLoading ? 'Loading...' : 'Refresh' }}
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading history...</div>
+
+  <div *ngIf="!isLoading && history.length === 0" class="no-data">
+    No report history found.
+  </div>
+
+  <div *ngIf="!isLoading && history.length > 0" class="history-list">
+    <div *ngFor="let report of history" class="history-item">
+      <div class="report-info">
+        <div class="date">{{ report.date | date:'mediumDate' }}</div>
+        <div class="format">Format: {{ report.format }}</div>
+      </div>
+      <div class="status" [class]="report.status.toLowerCase()">
+        {{ report.status }}
+      </div>
+    </div>
+  </div>
+</div>
